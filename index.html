@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Primary Meta Tags -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday, Ene Blessing Adoga! 🎉</title>
+  <meta name="description" content="A magical one‑page birthday celebration for Ene Blessing Adoga — packed with confetti, balloons, and unforgettable vibes." />
+  <meta name="keywords" content="Birthday, Celebration, Ene Blessing Adoga, Party, Wishes, Confetti, Balloons" />
+  <meta name="author" content="Your friend" />
+  <meta name="theme-color" content="#8b5cf6" />
+  <link rel="canonical" href="https://blessing-ene.vercel.app/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Happy Birthday, Ene Blessing Adoga! 🎂✨" />
+  <meta property="og:description" content="Step into a vibrant, animated celebration built just for Ene — share a wish, pop confetti, and enjoy the moment!" />
+  <!-- Simple social card (data URI SVG) -->
+  <meta property="og:image" content="https://blessing-ene.vercel.app/img/ene1.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="Happy Birthday, Ene! 🎉" />
+  <meta property="twitter:description" content="A beautiful single page filled with love, laughter, and interactive surprises — dedicated to Ene Blessing Adoga." />
+  <meta property="twitter:image" content="https://blessing-ene.vercel.app/img/ene1.jpg" />
+
+  <!-- Favicon (emoji data URI) -->
+  <link rel="icon" href="https://blessing-ene.vercel.app/img/ene1.jpg"/>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ["Poppins", "ui-sans-serif", "system-ui"],
+            body: ["Inter", "ui-sans-serif", "system-ui"],
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-16px)' } },
+            blob: { '0%': { transform: 'translate(0,0) scale(1)' }, '33%': { transform: 'translate(20px,-30px) scale(1.05)' }, '66%': { transform: 'translate(-20px,10px) scale(0.95)' }, '100%': { transform: 'translate(0,0) scale(1)' } },
+            shimmer: { '100%': { transform: 'translateX(100%)' } },
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            blob: 'blob 18s ease-in-out infinite',
+          },
+          boxShadow: {
+            glow: '0 10px 30px rgba(139,92,246,0.35)',
+          },
+          backgroundImage: {
+            'hero-gradient': 'radial-gradient(1200px 600px at 10% 10%, rgba(236,72,153,0.25), transparent 60%), radial-gradient(900px 600px at 90% 10%, rgba(139,92,246,0.25), transparent 60%), radial-gradient(1000px 700px at 50% 100%, rgba(34,197,94,0.20), transparent 60%)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- GSAP & Confetti -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* Sparkle cursor */
+    .sparkle {position: fixed; pointer-events:none; width:10px; height:10px; border-radius:50%; filter: blur(0.5px); mix-blend-mode: screen;}
+    /* Subtle scroll smoothing */
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-body selection:bg-fuchsia-400 selection:text-slate-900">
+  <!-- Animated background blobs -->
+  <div class="fixed inset-0 -z-10 bg-hero-gradient"></div>
+  <div class="pointer-events-none fixed -z-10 inset-0 overflow-hidden">
+    <div class="absolute -top-24 -left-16 w-72 h-72 bg-fuchsia-500/20 rounded-full blur-3xl animate-blob"></div>
+    <div class="absolute top-1/3 -right-16 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl animate-blob [animation-delay:6s]"></div>
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] bg-emerald-400/20 rounded-full blur-3xl animate-blob [animation-delay:12s]"></div>
+  </div>
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-slate-900/50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#" class="font-display text-xl font-extrabold tracking-tight">Ene's Day ✨</a>
+      <nav class="hidden sm:flex gap-6 text-sm">
+        <a href="#wishes" class="hover:text-fuchsia-300">Wish Wall</a>
+        <a href="#memories" class="hover:text-fuchsia-300">Memories</a>
+        <a href="#countdown" class="hover:text-fuchsia-300">Countdown</a>
+      </nav>
+      <button id="shareBtn" class="px-4 py-2 rounded-2xl bg-gradient-to-r from-fuchsia-500 to-violet-500 text-white font-semibold shadow-glow hover:opacity-90 active:scale-95 transition">Share 💌</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 py-20 md:py-28">
+      <div class="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
+        <div>
+          <p class="uppercase tracking-[0.25em] text-fuchsia-300/90 text-xs md:text-sm">Today we celebrate</p>
+          <h1 class="mt-3 font-display font-extrabold leading-tight text-4xl sm:text-6xl md:text-7xl">
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-400 via-emerald-300 to-violet-400">Ene Blessing Adoga</span>
+          </h1>
+          <p class="mt-4 text-slate-300 text-base md:text-lg leading-relaxed">We've been friends for so long and you've brought nothing but <span class="text-fuchsia-300 font-semibold">laughter</span>, 
+            <span class="text-emerald-300 font-semibold">light</span> and a whole lot of <span class="text-violet-300 font-semibold">good chaos</span> into every room. This page is built just for you. Tap around and enjoy the surprises!</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <button id="celebrateBtn" class="px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/10 backdrop-blur font-semibold shadow-glow transition">Pop Confetti 🎊</button>
+            <a href="#wishes" class="px-5 py-3 rounded-2xl bg-gradient-to-r from-fuchsia-500 to-violet-500 text-white font-semibold shadow-glow hover:opacity-90 transition">Write a Wish ✍️</a>
+            <button id="addToCalendar" class="px-5 py-3 rounded-2xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/30 font-semibold transition">Add to Calendar 📅</button>
+          </div>
+        </div>
+        <div class="relative">
+          <!-- Floating balloons illustration -->
+          <div class="grid grid-cols-3 gap-4 md:gap-6">
+            <div class="aspect-[3/4] rounded-3xl bg-white/5 backdrop-blur border border-white/10 shadow-glow animate-float" style="animation-delay:0s">
+              <div class="w-full h-full flex items-center justify-center">
+                🎈
+              </div>
+            </div>
+            <div class="aspect-square rounded-3xl bg-white/5 backdrop-blur border border-white/10 shadow-glow animate-float" style="animation-delay:1s">
+              <div class="w-full h-full flex items-center justify-center text-5xl">🎂</div>
+            </div>
+            <div class="aspect-[3/4] rounded-3xl bg-white/5 backdrop-blur border border-white/10 shadow-glow animate-float" style="animation-delay:0.5s">
+              <div class="w-full h-full flex items-center justify-center">🎉</div>
+            </div>
+            <div class="col-span-2 aspect-[16/10] rounded-3xl bg-white/5 backdrop-blur border border-white/10 shadow-glow animate-float" style="animation-delay:1.5s">
+              <div class="w-full h-full p-6 flex flex-col items-center justify-center text-center">
+                <p class="text-sm tracking-wider text-fuchsia-200/90">A toast to the funniest one!</p>
+                <p class="mt-2 text-xl font-semibold">More joy, more grace, more wins 🥂</p>
+              </div>
+            </div>
+            <div class="aspect-[4/5] rounded-3xl bg-white/5 backdrop-blur border border-white/10 shadow-glow animate-float" style="animation-delay:2s">
+              <div class="w-full h-full flex items-center justify-center text-4xl">💖</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll cue -->
+      <div class="mt-12 flex items-center gap-3 text-slate-300/80 text-sm">
+        <div class="relative w-12 h-6 rounded-full border border-white/20 overflow-hidden">
+          <span class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent animate-[shimmer_1.2s_linear_infinite]"></span>
+        </div>
+        <span>Scroll for wishes, memories & countdown</span>
+      </div>
+    </div>
+  </section>
+
+<!-- WISH WALL -->
+<section id="wishes" class="py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex items-end justify-between flex-wrap gap-6">
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white">Wish Wall 💌</h2>
+        <p class="mt-2 text-slate-300">Leave a sweet note for Ene — your wish will appear here and on the full wishes page.</p>
+      </div>
+      <div class="text-sm text-slate-400">Tips: be specific, be kind, be a little silly 😄</div>
+    </div>
+
+    <div class="mt-8 grid lg:grid-cols-[1fr_1.2fr] gap-8">
+      <!-- Wish Form -->
+      <form id="wishForm" class="relative bg-white/5 border border-white/10 rounded-3xl p-6 md:p-8 backdrop-blur-lg shadow-glow overflow-hidden">
+        <!-- Decorative gradient border -->
+        <div class="absolute inset-0 rounded-3xl border border-transparent bg-gradient-to-r from-pink-500/30 via-fuchsia-500/30 to-violet-500/30 animate-gradient-x pointer-events-none"></div>
+
+        <div class="relative grid gap-5">
+          <!-- Name Input -->
+          <div class="relative">
+            <input required name="from" id="from" placeholder=" " 
+              class="peer w-full px-4 pt-5 pb-2 rounded-2xl bg-white/10 border border-white/10 focus:outline-none focus:ring-2 focus:ring-fuchsia-400/50 text-white placeholder-transparent" />
+            <label for="from" class="absolute left-4 top-2 text-sm text-white/60 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-sm peer-focus:text-fuchsia-300">Your name</label>
+          </div>
+
+          <!-- Message Input -->
+          <div class="relative">
+            <textarea required name="message" id="message" rows="4" placeholder=" "
+              class="peer w-full px-4 pt-5 pb-2 rounded-2xl bg-white/10 border border-white/10 focus:outline-none focus:ring-2 focus:ring-fuchsia-400/50 text-white placeholder-transparent"></textarea>
+            <label for="message" class="absolute left-4 top-2 text-sm text-white/60 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-sm peer-focus:text-fuchsia-300">Write a heartfelt wish…</label>
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex flex-wrap gap-3 pt-2">
+            <button type="submit"
+              class="px-6 py-3 rounded-2xl bg-gradient-to-r from-fuchsia-500 to-violet-500 text-white font-semibold shadow-glow hover:opacity-90 transition">
+              ✨ Send Your Wish
+            </button>
+            <button id="clearWishes" type="button"
+              class="px-6 py-3 rounded-2xl bg-white/10 border border-white/10 hover:bg-white/15 text-white/70 transition">
+              Clear My Wishes
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Wishes Display -->
+      <div id="wishList" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 min-h-[12rem] text-white"></div>
+    </div>
+
+    <!-- Link to full wishes page -->
+    <div class="mt-6">
+      <a href="/wishes.html" 
+        class="inline-block text-pink-200 underline hover:text-white">
+        ✨ View All Wishes
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- MEMORIES / GALLERY -->
+  <section id="memories" class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex items-end justify-between flex-wrap gap-6">
+        <div>
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold">Tiny Memories 📸</h2>
+          <p class="mt-2 text-slate-300">Wishing you another great year</p>
+        </div>
+      </div>
+
+      <div id="gallery" class="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 select-none">
+        <!-- Polaroid style cards (placeholders) -->
+        <template id="polaroidTpl">
+          <figure class="relative group aspect-[3/4] bg-white rounded-xl overflow-hidden shadow-glow will-change-transform cursor-grab active:cursor-grabbing">
+            <img class="w-full h-3/4 object-cover" alt="Memory" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=800&auto=format&fit=crop" />
+            <figcaption class="h-1/4 p-3 text-slate-800 text-sm font-semibold flex items-center">A laugh that echoed forever</figcaption>
+            <span class="absolute inset-0 ring-4 ring-fuchsia-400/0 group-hover:ring-fuchsia-400/40 transition"></span>
+          </figure>
+        </template>
+      </div>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section id="countdown" class="py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 text-center backdrop-blur shadow-glow">
+        <h2 class="font-display text-3xl sm:text-4xl font-extrabold">Next Birthday Countdown ⏳</h2>
+        <p class="mt-2 text-slate-300">Counting down to the next sunrise of Ene's new year.</p>
+        <div id="timer" class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <!-- Boxes generated by JS -->
+        </div>
+        <p class="mt-6 text-slate-400 text-sm">Tip: Add to Calendar to never miss it again.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-12 border-t border-white/10">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-slate-400">
+      <p>Made with love for <span class="text-fuchsia-300 font-semibold">Ene Blessing Adoga</span> — by a friend who appreciates her fun spirit.</p>
+      <div class="flex items-center gap-3">
+        <a href="#" class="hover:text-fuchsia-300">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // ===== Confetti =====
+    function burstConfetti() {
+      const count = 180,
+            defaults = { spread: 360, ticks: 80, gravity: 0.9, decay: 0.92, startVelocity: 35 };
+      function fire(particleRatio, opts) { confetti(Object.assign({}, defaults, opts, { particleCount: Math.floor(count * particleRatio) })); }
+      fire(0.25, { scalar: 0.9, shapes: ['square'] });
+      fire(0.2, { scalar: 1.2, shapes: ['circle'] });
+      fire(0.35, { drift: 0.6 });
+      fire(0.1, { origin: { y: 0.2 } });
+      fire(0.1, { origin: { y: 0.2 } });
+    }
+
+    document.getElementById('celebrateBtn').addEventListener('click', burstConfetti);
+
+    // Burst on load for a wow entry
+    window.addEventListener('load', () => setTimeout(burstConfetti, 600));
+
+    // ===== Wish Wall (localStorage) =====
+    const wishForm = document.getElementById('wishForm');
+    const wishList = document.getElementById('wishList');
+    const clearBtn = document.getElementById('clearWishes');
+    const STORAGE_KEY = 'ene-birthday-wishes-v1';
+
+    function loadWishes() {
+      const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      wishList.innerHTML = '';
+      data.forEach(renderWish);
+      if (!data.length) {
+        wishList.innerHTML = `<div class="col-span-full text-center text-slate-400">Be the first to write a wish ✨</div>`;
+      }
+    }
+
+    function renderWish(w) {
+      const card = document.createElement('article');
+      card.className = 'bg-white/5 border border-white/10 rounded-2xl p-4 shadow-glow hover:bg-white/10 transition';
+      card.innerHTML = `
+        <div class="text-sm text-slate-300 whitespace-pre-wrap">${w.message}</div>
+        <div class="mt-3 text-xs text-slate-400">— <span class="font-semibold text-slate-200">${w.from}</span> · <time>${new Date(w.date).toLocaleString()}</time></div>
+      `;
+      wishList.appendChild(card);
+      if (window.gsap) gsap.from(card, { opacity: 0, y: 20, duration: 0.5 });
+    }
+
+    wishForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const form = new FormData(wishForm);
+      const from = (form.get('from') + '').trim();
+      const message = (form.get('message') + '').trim();
+      if (!from || !message) return;
+      const wish = { from, message, date: Date.now() };
+      const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      data.unshift(wish);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      wishForm.reset();
+      loadWishes();
+      burstConfetti();
+    });
+
+    clearBtn.addEventListener('click', () => {
+      if (confirm('Clear wishes you posted from this device?')) {
+        localStorage.removeItem(STORAGE_KEY);
+        loadWishes();
+      }
+    });
+
+    // ===== Memories Polaroids =====
+    const gallery = document.getElementById('gallery');
+    const tpl = document.getElementById('polaroidTpl');
+    const samplePhotos = [
+      {src:'img/ene1.jpg', cap:'Big laugh, bright day'},
+      {src:'img/ene2.jpg', cap:'Shine on!'},
+      {src:'img/ene3.jpg', cap:'Unforgettable energy'},
+      {src:'img/ene4.jpg', cap:'Joy in motion'},
+      {src:'img/ene5.jpg', cap:'Colorful moments'},
+      {src:'img/ene6.jpg', cap:'Sunset giggles'},
+      {src:'img/ene7.jpg', cap:'Golden hour queen'},
+      {src:'img/ene8.jpg', cap:'Another best day'},
+    ];
+
+    samplePhotos.forEach(p => {
+      const node = tpl.content.firstElementChild.cloneNode(true);
+      node.querySelector('img').src = p.src;
+      node.querySelector('figcaption').textContent = p.cap;
+      gallery.appendChild(node);
+    });
+
+    // drag to reorder (desktop)
+    let dragEl = null, startX=0, startY=0;
+    gallery.addEventListener('pointerdown', (e) => {
+      const card = e.target.closest('figure');
+      if (!card) return;
+      dragEl = card; startX = e.clientX; startY = e.clientY;
+      card.setPointerCapture(e.pointerId);
+      card.style.transition = 'none';
+      card.style.zIndex = 10;
+    });
+    gallery.addEventListener('pointermove', (e) => {
+      if (!dragEl) return;
+      const dx = e.clientX - startX; const dy = e.clientY - startY;
+      dragEl.style.transform = `translate(${dx}px, ${dy}px) rotate(${dx/40}deg)`;
+    });
+    gallery.addEventListener('pointerup', (e) => {
+      if (!dragEl) return;
+      dragEl.style.transition = '';
+      dragEl.style.transform = '';
+      dragEl.style.zIndex = '';
+      dragEl.releasePointerCapture(e.pointerId);
+      dragEl = null;
+    });
+
+    // ===== Countdown to next birthday (Aug 28, 00:00 local) =====
+    const timer = document.getElementById('timer');
+    const units = ['Days','Hours','Minutes','Seconds'];
+
+    function nextBirthdayDate() {
+      const now = new Date();
+      const year = now.getMonth() > 7 || (now.getMonth() === 7 && now.getDate() >= 28) ? now.getFullYear() + 1 : now.getFullYear();
+      return new Date(year, 7, 28, 0, 0, 0, 0); // Aug=7
+    }
+
+    function buildTimerBoxes() {
+      timer.innerHTML = '';
+      units.forEach(u => {
+        const box = document.createElement('div');
+        box.className = 'rounded-2xl bg-white/5 border border-white/10 p-6';
+        box.innerHTML = `<div class='text-4xl sm:text-5xl font-extrabold font-display' data-unit='${u.toLowerCase()}'>00</div><div class='mt-1 text-xs uppercase tracking-widest text-slate-400'>${u}</div>`;
+        timer.appendChild(box);
+      });
+    }
+
+    function updateTimer() {
+      const now = new Date();
+      const target = nextBirthdayDate();
+      const diff = target - now;
+      const s = Math.max(0, Math.floor(diff / 1000));
+      const days = Math.floor(s / 86400);
+      const hours = Math.floor((s % 86400) / 3600);
+      const minutes = Math.floor((s % 3600) / 60);
+      const seconds = s % 60;
+      const map = { days, hours, minutes, seconds };
+      Object.entries(map).forEach(([k,v]) => {
+        const el = timer.querySelector(`[data-unit='${k}']`);
+        if (el) el.textContent = String(v).padStart(2,'0');
+      });
+    }
+
+    buildTimerBoxes();
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
+    // ===== Web Share API =====
+    document.getElementById('shareBtn').addEventListener('click', async () => {
+      const data = { title: 'Ene\'s Birthday', text: 'Come celebrate Ene Blessing Adoga with me! 🎉', url: location.href };
+      if (navigator.share) {
+        try { await navigator.share(data); } catch {}
+      } else {
+        await navigator.clipboard.writeText(data.url);
+        alert('Link copied! Share it with friends ✨');
+      }
+    });
+
+    // ===== Add to Calendar (.ics) =====
+    document.getElementById('addToCalendar').addEventListener('click', () => {
+      const start = nextBirthdayDate();
+      const end = new Date(start.getTime() + 2 * 60 * 60 * 1000); // 2 hours
+
+      function toICSDate(d){
+        const pad = (n)=> String(n).padStart(2,'0');
+        return `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}T${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}Z`;
+      }
+
+      const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Birthday//ENE//EN\nBEGIN:VEVENT\nUID:${Date.now()}@ene-birthday\nDTSTAMP:${toICSDate(new Date())}\nDTSTART:${toICSDate(start)}\nDTEND:${toICSDate(end)}\nSUMMARY:🎉 Ene Blessing Adoga\'s Birthday\nDESCRIPTION:Never miss Ene\'s day again!\nLOCATION:Your city\nEND:VEVENT\nEND:VCALENDAR`;
+
+      const blob = new Blob([ics], { type: 'text/calendar' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'ene-birthday.ics'; a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // ===== Sparkle Cursor =====
+    const colors = ['#f0abfc','#a78bfa','#6ee7b7','#fca5a5'];
+    window.addEventListener('pointermove', (e) => {
+      for (let i=0;i<2;i++) {
+        const s = document.createElement('div');
+        s.className = 'sparkle';
+        const size = Math.random()*6+4;
+        s.style.width = s.style.height = size + 'px';
+        s.style.left = (e.clientX + (Math.random()*12-6)) + 'px';
+        s.style.top = (e.clientY + (Math.random()*12-6)) + 'px';
+        s.style.background = colors[Math.floor(Math.random()*colors.length)];
+        document.body.appendChild(s);
+        setTimeout(()=> s.remove(), 500 + Math.random()*500);
+      }
+    });
+
+
+
+    document.getElementById('wishForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  const res = await fetch('/api/wishes', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, message })
+  });
+
+  const data = await res.json();
+  if (data.success) {
+    document.getElementById('wishStatus').innerText = "🎉 Wish sent!";
+    e.target.reset();
+  } else {
+    document.getElementById('wishStatus').innerText = "⚠️ Failed to send.";
+  }
+});
+
+
+const form = document.getElementById("wishForm");
+const list = document.getElementById("wishList");
+
+async function loadWishes() {
+  const res = await fetch("/api/wishes.js");
+  const wishes = await res.json();
+  list.innerHTML = "";
+  wishes.slice(-6).reverse().forEach(w => {
+    list.innerHTML += `
+      <div class="p-4 rounded-2xl bg-white/10 border border-white/10">
+        <p class="text-sm text-white/80">💌 ${w.message}</p>
+        <div class="mt-2 text-xs text-white/50">— ${w.from}</div>
+      </div>`;
+  });
+}
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const data = {
+    from: form.from.value,
+    message: form.message.value
+  };
+
+  const res = await fetch("/api/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  if (res.ok) {
+    form.reset();
+    loadWishes(); // refresh wall
+  }
+});
+
+loadWishes(); // load on page start
+  </script>
+</body>
+</html>
